@@ -3,8 +3,8 @@ using UnityEngine;
 public class MazeGenerator : MonoBehaviour
 {
     public GameObject wallPrefab;
-    public int mazeWidth = 5;
-    public int mazeHeight = 5;
+    public int mazeWidth = 33;
+    public int mazeHeight = 33;
     public float spacing = 1.1f;
 
     void Start()
