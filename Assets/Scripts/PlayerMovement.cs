@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        Time.fixedDeltaTime = 0.003f;
     }
 
     void Update()
@@ -34,6 +35,11 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground") && IsCollisionBelow(collision) && Mathf.Abs(rb.velocity.y) < 0.5f)
         {
             isGrounded = true;
+        }
+    }
+    void OnCollisionEnter(Collision collision){
+        if (collision.gameObject.CompareTag("Ground")){
+            collision.gameObject.GetComponent<MineGrid>().Step();
         }
     }
 
