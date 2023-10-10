@@ -17,8 +17,8 @@ public class BacktrackingGenerator : MazeGenAlgo
         }
 
         var rand = new Random();
-        int crow = rand.Next(1, H) / 2 * 2 + 1;
-        int ccol = rand.Next(1, W) / 2 * 2 + 1;
+        int crow = rand.Next(0, H/2)* 2 + 1;
+        int ccol = rand.Next(0, W/2)* 2 + 1;
         var track = new List<Tuple<int, int>> { Tuple.Create(crow, ccol) };
         grid[crow, ccol] = 0;
 
