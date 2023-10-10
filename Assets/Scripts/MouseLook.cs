@@ -6,6 +6,7 @@ public class MouseLook : MonoBehaviour
     public float sensitivity = 2.0f;
     private float rotationX = 0.0f;
     private float rotationY = 0.0f;
+    public GameObject BasketballPrefab;
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -24,5 +25,11 @@ public class MouseLook : MonoBehaviour
         
         transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
         transform.parent.localRotation = Quaternion.Euler(0, rotationY, 0);
+        if (Input.GetMouseButtonDown(0))
+            ShootBasketball();
+    }
+    void ShootBasketball(){
+        GameObject ball = Instantiate(BasketballPrefab, transform.position+transform.forward*0.3f, Quaternion.identity);
+        ball.GetComponent<Rigidbody>().velocity = transform.forward*6.0f+transform.parent.GetComponent<Rigidbody>().velocity*0.7f;
     }
 }

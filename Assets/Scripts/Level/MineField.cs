@@ -24,7 +24,7 @@ public class MineField : MonoBehaviour
     }
     private void preLoadPic(){
         // 預加載圖片
-        mineTextures = Resources.LoadAll<Texture2D>("Textures");
+        mineTextures = Resources.LoadAll<Texture2D>("Textures/Mines");
 
         // 使用其中一個紋理
         //GetComponent<Renderer>().material.mainTexture = mineTextures[index];

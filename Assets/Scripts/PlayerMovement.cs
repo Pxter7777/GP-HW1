@@ -17,9 +17,12 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         // Check for jump input.
-        if (Input.GetKey(KeyCode.Space) && isGrounded)
+        if (Input.GetKey(KeyCode.Space))
         {
-            Jump();
+            if (isGrounded)
+                Jump();
+            else
+                print("NotOnGround");
         }
     }
 
@@ -32,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
     void OnCollisionStay(Collision collision)
     {
         // Check if the collision object has the "Ground" tag and if the collision is below the player and the vertical speed is almost zero.
-        if (collision.gameObject.CompareTag("Ground") && IsCollisionBelow(collision) && Mathf.Abs(rb.velocity.y) < 0.5f)
+        if (collision.gameObject.CompareTag("Ground") && IsCollisionBelow(collision) && rb.velocity.y < 1.0f)
         {
             isGrounded = true;
         }
