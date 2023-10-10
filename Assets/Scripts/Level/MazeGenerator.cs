@@ -6,9 +6,9 @@ public class MazeGenerator : MonoBehaviour
     //public int mazeWidth = 33;
     //public int mazeHeight = 33;
     //public float spacing = 1.1f;
-    public void GenerateAndPlace(int mazeWidth, int mazeHeight)
+    public void GenerateAndPlace(int mazeWidth, int mazeHeight, int seed)
     {
-        BacktrackingGenerator generator = new BacktrackingGenerator(mazeWidth, mazeHeight);
+        BacktrackingGenerator generator = new BacktrackingGenerator(mazeWidth, mazeHeight, seed);
         int[,] maze = generator.Generate();
         // Build Z direction walls
         for (int i = 0; i < maze.GetLength(0); i=i+2){

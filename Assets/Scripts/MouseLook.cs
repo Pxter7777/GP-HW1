@@ -22,6 +22,7 @@ public class MouseLook : MonoBehaviour
 
         rotationX = Mathf.Clamp(rotationX, -90, 90);
         
-        transform.localRotation = Quaternion.Euler(rotationX, rotationY, 0);
+        transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
+        transform.parent.localRotation = Quaternion.Euler(0, rotationY, 0);
     }
 }

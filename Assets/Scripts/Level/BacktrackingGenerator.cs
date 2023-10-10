@@ -3,7 +3,8 @@ using System.Collections.Generic;
 
 public class BacktrackingGenerator : MazeGenAlgo
 {
-    public BacktrackingGenerator(int w, int h) : base(h, w) { }
+
+    public BacktrackingGenerator(int w, int h, int seed) : base(h, w, seed) {}
 
     public override int[,] Generate()
     {
@@ -15,8 +16,7 @@ public class BacktrackingGenerator : MazeGenAlgo
                 grid[i, j] = 1;
             }
         }
-
-        var rand = new Random();
+        // seed and rand are fixed in MazeGenAlgo
         int crow = rand.Next(0, H/2)* 2 + 1;
         int ccol = rand.Next(0, W/2)* 2 + 1;
         var track = new List<Tuple<int, int>> { Tuple.Create(crow, ccol) };

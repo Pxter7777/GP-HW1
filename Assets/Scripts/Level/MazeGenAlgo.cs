@@ -4,8 +4,9 @@ using System.Collections.Generic;
 public abstract class MazeGenAlgo
 {
     protected int h, w, H, W;
-
-    public MazeGenAlgo(int h, int w)
+    protected int seed;
+    protected System.Random rand;
+    public MazeGenAlgo(int h, int w, int seed)
     {
         if (w < 3 || h < 3)
         {
@@ -16,6 +17,8 @@ public abstract class MazeGenAlgo
         this.w = w;
         this.H = (2 * h) + 1;
         this.W = (2 * w) + 1;
+        this.seed = seed;
+        this. rand = new System.Random(seed);
     }
 
     public abstract int[,] Generate();
@@ -29,7 +32,7 @@ public abstract class MazeGenAlgo
         if (c > 1 && grid[r, c - 2] == (isWall ? 1 : 0)) ns.Add(Tuple.Create(r, c - 2));
         if (c < W - 2 && grid[r, c + 2] == (isWall ? 1 : 0)) ns.Add(Tuple.Create(r, c + 2));
 
-        var rand = new Random();
+        
         int n = ns.Count;
         while (n > 1)
         {

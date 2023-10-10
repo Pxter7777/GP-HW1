@@ -10,7 +10,7 @@ public class LevelGenerator : MonoBehaviour
     void Start()
     {
         MazeGenerator maze = transform.Find("Maze").GetComponent<MazeGenerator>();
-        maze.GenerateAndPlace(mazeWidth, mazeHeight);
+        maze.GenerateAndPlace(mazeWidth, mazeHeight, 31337);
         MinesGenerator mines = transform.Find("Mines").GetComponent<MinesGenerator>();
         mines.GenerateAndPlace(mazeWidth*2, mazeHeight*2);
         transform.Find("birdView").position = new Vector3(mazeWidth, 20, mazeHeight);
