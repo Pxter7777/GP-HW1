@@ -80,7 +80,7 @@ public class PlayerMovement : MonoBehaviour
 
         // Apply movement.
         //rb.AddForce(moveDirection * 3.0f);
-        rb.velocity = new Vector3(moveDirection.x*3.0f, rb.velocity.y,moveDirection.z*3.0f);
+        rb.velocity = new Vector3(moveDirection.x*4.0f, rb.velocity.y,moveDirection.z*4.0f);
         // 取得水平速度（忽略 Y 軸）
         Vector3 horizontalVelocity = new Vector3(rb.velocity.x, 0.0f, rb.velocity.z);
 
