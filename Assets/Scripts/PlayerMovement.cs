@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
     void OnCollisionStay(Collision collision)
     {
         // Check if the collision object has the "Ground" tag and if the collision is below the player and the vertical speed is almost zero.
-        if (collision.gameObject.CompareTag("Ground") && IsCollisionBelow(collision) && rb.velocity.y < 1.0f)
+        if (collision.gameObject.CompareTag("Ground") && rb.velocity.y < 1.0f)
         {
             isGrounded = true;
         }
