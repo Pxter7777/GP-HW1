@@ -14,6 +14,7 @@ public class MineGrid : MonoBehaviour
     private Texture2D StepOnTexture;
 
     private bool isStepped = false;
+    private bool isBomb = false;
     void Start()
     {
         
@@ -30,8 +31,13 @@ public class MineGrid : MonoBehaviour
             isStepped = true;
             GetComponent<Renderer>().material = Normal;
             GetComponent<Renderer>().material.mainTexture = this.StepOnTexture;
-            Instantiate(ExplosionEffectPreFab, transform.position, Quaternion.identity);
+            if(isBomb)
+                Instantiate(ExplosionEffectPreFab, transform.position, Quaternion.identity);
         }
+    }
+    public void SetupExplosionOrNot(int isBomb){
+        if(isBomb==1)
+            this.isBomb = true;
     }
     // Update is called once per frame
     void Update()

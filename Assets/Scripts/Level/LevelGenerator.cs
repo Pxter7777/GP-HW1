@@ -16,7 +16,7 @@ public class LevelGenerator : MonoBehaviour
         MineField mines = minesTransform.GetComponent<MineField>();
         mines.Initialize(mazeWidth*2, mazeHeight*2, 30, 31337);
         //
-        transform.Find("birdView").position = new Vector3(mazeWidth, 20, mazeHeight);
+        //transform.Find("birdView").position = new Vector3(mazeWidth, 20, mazeHeight);
     }
 
 }

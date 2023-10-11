@@ -94,7 +94,9 @@ public class MineField : MonoBehaviour
                 GameObject grid = Instantiate(minePrefab, position, Quaternion.identity, transform);
                 //change style
                 //grid.GetComponent<Renderer>().material.mainTexture = mineTextures[9];
-                grid.GetComponent<MineGrid>().setStepOnTexture(mineTextures[hint[i,j]]);
+                MineGrid gridscript = grid.GetComponent<MineGrid>();
+                gridscript.setStepOnTexture(mineTextures[hint[i,j]]);
+                gridscript.SetupExplosionOrNot(field[i, j]);
             }
         
     }
