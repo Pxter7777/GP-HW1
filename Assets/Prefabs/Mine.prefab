@@ -115,4 +115,5 @@ MonoBehaviour:
   Safe: {fileID: 2100000, guid: 768fd6c32e3681b4ab953dba303404f6, type: 2}
   Normal: {fileID: 2100000, guid: f985838ffa3b51446b39a036054a3ccf, type: 2}
   Unknown: {fileID: 2100000, guid: 8be3f2cadd21ed744abcd38e94fec91e, type: 2}
-  danger: {fileID: 2100000, guid: b7c14c7aa167a6844b84cc1992c83976, type: 2}
+  Danger: {fileID: 0}
+  ExplosionEffectPreFab: {fileID: 1799076697045686745, guid: 9ec00bf4859a7fa4b87155133a01c08b, type: 3}

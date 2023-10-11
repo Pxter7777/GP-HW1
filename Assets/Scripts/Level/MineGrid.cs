@@ -10,7 +10,9 @@ public class MineGrid : MonoBehaviour
     //Material matHid = rend.material;
     public Texture2D hidTexture;
     public Material Safe, Normal, Unknown, Danger;
+    public GameObject ExplosionEffectPreFab;
     private Texture2D StepOnTexture;
+
     private bool isStepped = false;
     void Start()
     {
@@ -28,6 +30,7 @@ public class MineGrid : MonoBehaviour
             isStepped = true;
             GetComponent<Renderer>().material = Normal;
             GetComponent<Renderer>().material.mainTexture = this.StepOnTexture;
+            Instantiate(ExplosionEffectPreFab, transform.position, Quaternion.identity);
         }
     }
     // Update is called once per frame
