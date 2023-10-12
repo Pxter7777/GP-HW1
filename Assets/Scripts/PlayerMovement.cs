@@ -10,9 +10,11 @@ public class PlayerMovement : MonoBehaviour
     public float horizontalDrag = 2.0f;
     private bool moveable = true;
     Vector3 start_position;
+    private Player playerScript;
     void Start()
     {
         //starting_transform = transform;
+        playerScript = transform.GetComponent<Player>();
         rb = GetComponent<Rigidbody>();
         Time.fixedDeltaTime = 0.003f;
         start_position = transform.position;
@@ -50,6 +52,7 @@ public class PlayerMovement : MonoBehaviour
         if(other.gameObject.CompareTag("Ball")&&other.gameObject.GetComponent<Basketball>().CanPickUp())
         {
             Destroy(other.gameObject);
+            playerScript.AddBallCount();
         }
     }
     void OnCollisionEnter(Collision collision){

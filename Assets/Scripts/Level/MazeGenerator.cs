@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class MazeGenerator : MonoBehaviour
 {
-    public GameObject wallPrefab, borderPrefab, goalPrefab;
+    public GameObject wallPrefab, borderPrefab, goalPrefab, borderWithNamePrefab;
     //public int mazeWidth = 33;
     //public int mazeHeight = 33;
     //public float spacing = 1.1f;
@@ -33,8 +33,12 @@ public class MazeGenerator : MonoBehaviour
             {
                 if(i==maze.GetLength(0)-2&&j==maze.GetLength(1)-1)
                     continue;
-                if(i==1&&j==0)
+                if(i==1&&j==0){
+                    position = new Vector3(j, 1, i);
+                    Instantiate(borderWithNamePrefab, position, Quaternion.Euler(0, 90, 0), transform);
                     continue;
+                }
+                    
                 if (maze[i, j] == 1)
                 {
                     position = new Vector3(j, 1, i);

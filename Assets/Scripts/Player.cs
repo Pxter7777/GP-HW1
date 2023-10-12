@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Diagnostics;
 using System.Reflection;
-
+using TMPro;  // 引入 TextMeshPro 命名空間
 public class Player : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -12,7 +12,8 @@ public class Player : MonoBehaviour
     PlayerMovement movement_script;
     public UIControl UI_script;
     private bool isPaused = false;
-    
+    public int basketballCount = 5;
+    public TextMeshProUGUI myText;
     void Start()
     {
         camera_script = transform.Find("Main Camera").GetComponent<MouseLook>();
@@ -71,5 +72,20 @@ public class Player : MonoBehaviour
             UI_script.OpenEscCanvas();
         }
         
+    }
+    public void UpdateText(string newText)
+    {
+        myText.text = newText;
+    }
+    public int GetBallCount(){
+        return basketballCount;
+    }
+    public void DecreaseBallCount(){
+        basketballCount--;
+        this.UpdateText(basketballCount.ToString());
+    }
+    public void AddBallCount(){
+        basketballCount++;
+        this.UpdateText(basketballCount.ToString());
     }
 }

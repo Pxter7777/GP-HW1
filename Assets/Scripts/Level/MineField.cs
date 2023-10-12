@@ -6,17 +6,18 @@ public class MineField : MonoBehaviour
 {
     private int width;
     private int height;
-    private int bombCount;
+    private int bombCount, basketballCount;
     private int[,] field, hint;
     private System.Random random;
     private Texture2D[] mineTextures;
-    public void Initialize(int width, int height, int bombCount, int seed)
+    public void Initialize(int width, int height, int bombCount, int basketballCount, int seed)
     {
         this.width = width;
         this.height = height;
         this.field = new int[width, height];
         this.hint = new int[width, height];
         this.bombCount = bombCount;
+        this.basketballCount = basketballCount;
         this.random = new System.Random(seed);
         preLoadPic();
         GenerateField();
@@ -29,7 +30,7 @@ public class MineField : MonoBehaviour
         // 使用其中一個紋理
         //GetComponent<Renderer>().material.mainTexture = mineTextures[index];
     }
-    public GameObject minePrefab;
+    public GameObject minePrefab, basketballPrefab;
 /*    public void GenerateAndPlace(int mapWidth, int mapHeight, int bombCount)
     {
         for (int i = 0; i < mapHeight; i++){
@@ -51,12 +52,30 @@ public class MineField : MonoBehaviour
     }
     private void GenerateField()
     {
+        Vector3 position;
         List<Tuple<int, int>> noBombPositions = new List<Tuple<int, int>>{
             Tuple.Create(0, 0),
             Tuple.Create(0, 1),
             Tuple.Create(1, 0),
             Tuple.Create(1, 1),
         };
+        // Spawn Basketballs
+        int placedballs = 0;
+        while (placedballs < basketballCount)
+        {
+            int x = random.Next(width);
+            int y = random.Next(height);
+
+            // 檢查這個位置是否已經有地雷或者不應該放置地雷
+            if (!noBombPositions.Contains(new Tuple<int, int>(x, y)))
+            {
+                noBombPositions.Add(Tuple.Create(x, y));
+                placedballs++;
+                position = new Vector3(0.5f+x, 0, 0.5f+y);
+                Instantiate(basketballPrefab, position, Quaternion.identity);
+            }
+        }
+
         
         int placedBombs = 0;
         
@@ -90,7 +109,7 @@ public class MineField : MonoBehaviour
             }
         for (int i = 0; i < width; i++)
             for (int j = 0; j < height; j++){
-                Vector3 position = new Vector3(0.5f+i, 0, 0.5f+j);
+                position = new Vector3(0.5f+i, 0, 0.5f+j);
                 GameObject grid = Instantiate(minePrefab, position, Quaternion.identity, transform);
                 //change style
                 //grid.GetComponent<Renderer>().material.mainTexture = mineTextures[9];

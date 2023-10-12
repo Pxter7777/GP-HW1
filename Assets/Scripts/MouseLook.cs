@@ -8,8 +8,10 @@ public class MouseLook : MonoBehaviour
     private float rotationY = 0.0f;
     private bool moveable = true;
     public GameObject BasketballPrefab;
+    private Player playerScript;
     void Start()
     {
+        playerScript = transform.parent.GetComponent<Player>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -32,8 +34,12 @@ public class MouseLook : MonoBehaviour
             ShootBasketball();
     }
     void ShootBasketball(){
-        GameObject ball = Instantiate(BasketballPrefab, transform.position+transform.forward*0.5f, Quaternion.identity);
-        ball.GetComponent<Rigidbody>().velocity = transform.forward*6.0f+transform.parent.GetComponent<Rigidbody>().velocity*0.7f;
+        if(playerScript.GetBallCount()>0){
+            GameObject ball = Instantiate(BasketballPrefab, transform.position+transform.forward*0.5f, Quaternion.identity);
+            ball.GetComponent<Rigidbody>().velocity = transform.forward*6.0f+transform.parent.GetComponent<Rigidbody>().velocity*0.7f;
+            playerScript.DecreaseBallCount();//todo
+        }
+        
     }
     public void Lock(){
         Cursor.lockState = CursorLockMode.None;
