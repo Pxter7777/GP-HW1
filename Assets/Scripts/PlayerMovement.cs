@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float jumpForce = 10.0f;
-    private bool isGrounded = false;
+    //private bool isGrounded = false;
     private Rigidbody rb;
     public float horizontalDrag = 2.0f;
     private bool moveable = true;

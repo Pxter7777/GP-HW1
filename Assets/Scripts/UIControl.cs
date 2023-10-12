@@ -6,6 +6,7 @@ public class UIControl : MonoBehaviour
 {
     // Start is called before the first frame update
     Canvas boom;
+    public Canvas win_canvas;
     void Start()
     {
         boom = GameObject.Find("PlayerStepOnMineScreen").GetComponent<Canvas>();
@@ -22,5 +23,14 @@ public class UIControl : MonoBehaviour
     }
     public void CloseBoomCanvas(){
         boom.enabled=false;
+    }
+    public void OpenWinCanvas(){
+        win_canvas.enabled=true;
+    }
+    public void CloseWinCanvas(){
+        win_canvas.enabled=false;
+    }
+    public void QuitGame(){
+        Application.Quit();
     }
 }

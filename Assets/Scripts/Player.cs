@@ -10,13 +10,13 @@ public class Player : MonoBehaviour
     //private bool isAlive = true;
     MouseLook camera_script;
     PlayerMovement movement_script;
-    UIControl UI_script;
+    public UIControl UI_script;
     
     void Start()
     {
         camera_script = transform.Find("Main Camera").GetComponent<MouseLook>();
         movement_script = transform.GetComponent<PlayerMovement>();
-        UI_script = GameObject.Find("UIManager").GetComponent<UIControl>();
+        //UI_script = GameObject.Find("UIManager").GetComponent<UIControl>();
     }
 
     // Update is called once per frame
@@ -30,6 +30,11 @@ public class Player : MonoBehaviour
         camera_script.Lock();
         movement_script.Lock();
         UI_script.OpenBoomCanvas();
+    }
+    public void Win(){
+        camera_script.Lock();
+        movement_script.Lock();
+        UI_script.OpenWinCanvas();
     }
     public void Respawn(int HI){
         /*
