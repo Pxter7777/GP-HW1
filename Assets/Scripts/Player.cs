@@ -7,10 +7,11 @@ using System.Reflection;
 public class Player : MonoBehaviour
 {
     // Start is called before the first frame update
-    //private bool isAlive = true;
+    private bool isAlive = true;
     MouseLook camera_script;
     PlayerMovement movement_script;
     public UIControl UI_script;
+    private bool isPaused = false;
     
     void Start()
     {
@@ -22,11 +23,12 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.Escape)&&isAlive)
+            Esc();
     }
 
     public void Die(){
-        //isAlive = false;
+        isAlive = false;
         camera_script.Lock();
         movement_script.Lock();
         UI_script.OpenBoomCanvas();
@@ -49,10 +51,25 @@ public class Player : MonoBehaviour
         */
 
         movement_script.MovetoStart();
-        //isAlive = true;
+        
         camera_script.Unlock();
         movement_script.Unlock();
         UI_script.CloseBoomCanvas();
-        print("RESPAWN");
+        isAlive = true;
+    }
+    public void Esc(){
+        if(isPaused){
+            isPaused = false;
+            camera_script.Unlock();
+            movement_script.Unlock();
+            UI_script.CloseEscCanvas();
+        }
+        else{
+            isPaused = true;
+            camera_script.Lock();
+            movement_script.Lock();
+            UI_script.OpenEscCanvas();
+        }
+        
     }
 }
