@@ -32,7 +32,7 @@ public class MouseLook : MonoBehaviour
             ShootBasketball();
     }
     void ShootBasketball(){
-        GameObject ball = Instantiate(BasketballPrefab, transform.position+transform.forward*0.3f, Quaternion.identity);
+        GameObject ball = Instantiate(BasketballPrefab, transform.position+transform.forward*0.5f, Quaternion.identity);
         ball.GetComponent<Rigidbody>().velocity = transform.forward*6.0f+transform.parent.GetComponent<Rigidbody>().velocity*0.7f;
     }
     public void Lock(){

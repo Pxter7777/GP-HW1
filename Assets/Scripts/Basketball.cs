@@ -5,9 +5,10 @@ using UnityEngine;
 public class Basketball : MonoBehaviour
 {
     // Start is called before the first frame update
+    private float shootTime;
     void Start()
     {
-        
+        shootTime = Time.time;
     }
     void OnCollisionEnter(Collision collision){
         if (collision.gameObject.CompareTag("Ground")){
@@ -18,5 +19,8 @@ public class Basketball : MonoBehaviour
     void Update()
     {
         
+    }
+    public bool CanPickUp(){
+        return Time.time - shootTime > 1f;
     }
 }

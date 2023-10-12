@@ -44,6 +44,14 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = true;
         }
     }*/
+    
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.CompareTag("Ball")&&other.gameObject.GetComponent<Basketball>().CanPickUp())
+        {
+            Destroy(other.gameObject);
+        }
+    }
     void OnCollisionEnter(Collision collision){
         if (collision.gameObject.CompareTag("Ground")){
             collision.gameObject.GetComponent<MineGrid>().Step(this.gameObject);

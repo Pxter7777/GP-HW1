@@ -37,7 +37,7 @@ public class MineGrid : MonoBehaviour
                     Destroy(stepper);
                 }
                 else if(stepper.CompareTag("Player")){
-                    print(stepper);
+                    //print(stepper);
                     stepper.GetComponent<Player>().Die();
                 }
             }

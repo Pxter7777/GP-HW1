@@ -33,6 +33,8 @@ public class MazeGenerator : MonoBehaviour
             {
                 if(i==maze.GetLength(0)-2&&j==maze.GetLength(1)-1)
                     continue;
+                if(i==1&&j==0)
+                    continue;
                 if (maze[i, j] == 1)
                 {
                     position = new Vector3(j, 1, i);
