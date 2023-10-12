@@ -73,3 +73,4 @@ crashlytics-build.properties
 
 # Unauthorized BGM
 /Assets/Resources/Audio/BGM/
+*.zip

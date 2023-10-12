@@ -49,7 +49,7 @@ public class MouseLook : MonoBehaviour
     public void Unlock(){
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        print("SHOULDNOTBEVISIBLE");
+        //print("SHOULDNOTBEVISIBLE");
         moveable = true;
     }
 }

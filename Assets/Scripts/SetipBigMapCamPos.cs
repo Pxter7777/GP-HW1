@@ -9,7 +9,7 @@ public class SetipBigMapCamPos : MonoBehaviour
     void Start()
     {
         levelScript = transform.parent.GetComponent<LevelGenerator>();
-        transform.position = new Vector3(transform.parent.position.x+levelScript.mazeWidth, 20.0f, transform.parent.position.y+levelScript.mazeHeight);
+        transform.position = new Vector3(levelScript.mazeWidth, 20.0f,levelScript.mazeHeight);
     }
 
     // Update is called once per frame
