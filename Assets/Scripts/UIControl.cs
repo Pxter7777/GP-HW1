@@ -8,6 +8,7 @@ public class UIControl : MonoBehaviour
     Canvas boom;
     public Canvas win_canvas;
     public Canvas esc_canvas;
+    public Canvas bigmap_canvas;
     void Start()
     {
         boom = GameObject.Find("PlayerStepOnMineScreen").GetComponent<Canvas>();
@@ -36,5 +37,11 @@ public class UIControl : MonoBehaviour
     }
     public void CloseEscCanvas(){
         esc_canvas.enabled=false;
+    }
+    public void OpenBigMapCanvas(){
+        bigmap_canvas.enabled=true;
+    }
+    public void CloseBigMapCanvas(){
+        bigmap_canvas.enabled=false;
     }
 }

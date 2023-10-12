@@ -15,6 +15,7 @@ public class MineGrid : MonoBehaviour
 
     private bool isStepped = false;
     private bool isBomb = false;
+    private bool targeted = false;
     void Start()
     {
         
@@ -52,5 +53,25 @@ public class MineGrid : MonoBehaviour
     void Update()
     {
         
+    }
+    public void LeftClicked(){
+        if (!targeted){
+            GetComponent<Renderer>().material = Safe;
+            targeted = true;
+        }
+        else if(targeted){
+            GetComponent<Renderer>().material = Unknown;
+            targeted = false;
+        }
+    }
+    public void RightClicked(){
+        if (!targeted){
+            GetComponent<Renderer>().material = Danger;
+            targeted = true;
+        }
+        else if(targeted){
+            GetComponent<Renderer>().material = Unknown;
+            targeted = false;
+        }
     }
 }
