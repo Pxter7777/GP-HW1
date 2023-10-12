@@ -8,10 +8,14 @@ public class PlayerMovement : MonoBehaviour
     private bool isGrounded = false;
     private Rigidbody rb;
     public float horizontalDrag = 2.0f;
+    private bool moveable = true;
+    Vector3 start_position;
     void Start()
     {
+        //starting_transform = transform;
         rb = GetComponent<Rigidbody>();
         Time.fixedDeltaTime = 0.003f;
+        start_position = transform.position;
     }
 
     void Update()
@@ -19,10 +23,10 @@ public class PlayerMovement : MonoBehaviour
         // Check for jump input.
         if (Input.GetKey(KeyCode.Space))
         {
-            if (isGrounded)
+            if (IsGrounded())
                 Jump();
-            else
-                print("NotOnGround");
+            //else
+            //    print("NotOnGround");
         }
     }
 
@@ -32,28 +36,42 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
     }
 
-    void OnCollisionStay(Collision collision)
+    /*void OnCollisionStay(Collision collision)
     {
         // Check if the collision object has the "Ground" tag and if the collision is below the player and the vertical speed is almost zero.
         if (collision.gameObject.CompareTag("Ground") && rb.velocity.y < 1.0f)
         {
             isGrounded = true;
         }
-    }
+    }*/
     void OnCollisionEnter(Collision collision){
         if (collision.gameObject.CompareTag("Ground")){
-            collision.gameObject.GetComponent<MineGrid>().Step();
+            collision.gameObject.GetComponent<MineGrid>().Step(this.gameObject);
         }
+        //print("Enter Ground");
+    }
+    bool IsGrounded()
+    {
+        float distanceToGround = 0.51f; // 你可以根據需要調整這個值
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, -Vector3.up, out hit, distanceToGround))
+        {
+            //print("ON GROUND");
+            return true;
+        }
+        //print("NOT GROUND");
+        return false;
     }
 
-    void OnCollisionExit(Collision collision)
+    /*void OnCollisionExit(Collision collision)
     {
         // Check if the collision object has the "Ground" tag.
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = false;
+            //print("Not Ground");
         }
-    }
+    }*/
 
     bool IsCollisionBelow(Collision collision)
     {
@@ -70,6 +88,8 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         // Get input.
+        if(!moveable)
+            return;
         float horizontal = Input.GetAxis("Horizontal"); // A/D or Left/Right
         float vertical = Input.GetAxis("Vertical"); // W/S or Up/Down
 
@@ -98,5 +118,17 @@ public class PlayerMovement : MonoBehaviour
 
         // 應用阻力
         rb.AddForce(dragForce);
+    }
+    public void Lock(){
+        moveable = false;
+        rb.isKinematic = true;
+    }
+    public void MovetoStart(){
+        transform.position = start_position;
+        rb.velocity = Vector3.zero;
+    }
+    public void Unlock(){
+        moveable = true;
+        rb.isKinematic = false;
     }
 }

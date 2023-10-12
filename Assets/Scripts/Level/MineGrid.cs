@@ -26,13 +26,22 @@ public class MineGrid : MonoBehaviour
         this.StepOnTexture = texture;
         GetComponent<Renderer>().material.mainTexture = this.hidTexture;
     }
-    public void Step(){
+    public void Step(GameObject stepper){
         if(!isStepped){
             isStepped = true;
             GetComponent<Renderer>().material = Normal;
             GetComponent<Renderer>().material.mainTexture = this.StepOnTexture;
-            if(isBomb)
+            if(isBomb){
                 Instantiate(ExplosionEffectPreFab, transform.position, Quaternion.identity);
+                if(stepper.CompareTag("Ball")){
+                    Destroy(stepper);
+                }
+                else if(stepper.CompareTag("Player")){
+                    print(stepper);
+                    stepper.GetComponent<Player>().Die();
+                }
+            }
+                
         }
     }
     public void SetupExplosionOrNot(int isBomb){

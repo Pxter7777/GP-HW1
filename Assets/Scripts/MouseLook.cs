@@ -6,6 +6,7 @@ public class MouseLook : MonoBehaviour
     public float sensitivity = 2.0f;
     private float rotationX = 0.0f;
     private float rotationY = 0.0f;
+    private bool moveable = true;
     public GameObject BasketballPrefab;
     void Start()
     {
@@ -15,6 +16,8 @@ public class MouseLook : MonoBehaviour
 
     void Update()
     {
+        if(!moveable)
+            return;
         float mouseX = Input.GetAxis("Mouse X") * sensitivity;
         float mouseY = Input.GetAxis("Mouse Y") * sensitivity;
 
@@ -31,5 +34,15 @@ public class MouseLook : MonoBehaviour
     void ShootBasketball(){
         GameObject ball = Instantiate(BasketballPrefab, transform.position+transform.forward*0.3f, Quaternion.identity);
         ball.GetComponent<Rigidbody>().velocity = transform.forward*6.0f+transform.parent.GetComponent<Rigidbody>().velocity*0.7f;
+    }
+    public void Lock(){
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        moveable = false;
+    }
+    public void Unlock(){
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        moveable = true;
     }
 }

@@ -11,7 +11,7 @@ public class Basketball : MonoBehaviour
     }
     void OnCollisionEnter(Collision collision){
         if (collision.gameObject.CompareTag("Ground")){
-            collision.gameObject.GetComponent<MineGrid>().Step();
+            collision.gameObject.GetComponent<MineGrid>().Step(this.gameObject);
         }
     }
     // Update is called once per frame
